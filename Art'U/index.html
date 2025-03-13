@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art'U</title>
+    <link rel="stylesheet" href="logindesign.css">
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <form id="loginForm" onsubmit="return validateForm(event)">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" id="username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <div class="error" id="errorMessage"></div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#">Forgot password</a>
+            </div>
+                <button type="submit" class="btn">Log In</button>
+
+                <div class="register-link">
+                    <p>Don't have an account? <a 
+                        href="#">Register</a></p>
+                </div>
+        </form>
+    </div>
+    <script>
+         function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Get input values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Simple validation (you should add more secure validation in real applications)
+            if (username === 'arise' && password === 'okiro') {
+                // Store user session (simple example)
+                sessionStorage.setItem('loggedIn', 'true');
+                
+                // Redirect to home page
+                window.location.href = 'home.html';
+            } else {
+                errorMessage.textContent = 'Invalid username or password';
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        // Check if user is already logged in when page loads
+        window.onload = function() {
+            if (sessionStorage.getItem('loggedIn') === 'true') {
+                window.location.href = 'home.html';
+            }
+        }
+    </script>
+</body>
+</html>
